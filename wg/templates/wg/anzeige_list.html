@@ -7,16 +7,12 @@
             <h1><a href="/">berliner-wg</a></h1>
         </div>
 
-        <div>
-            <p>published: 25.08.2020, 09:25</p>
-            <h2><a href="">Zimmer 15qm</a></h2>
-            <p>Studierst du schon, aber hast keine eigene Wohnung? Wir haben was für dich : 15qm in der Rönnerstraße. Frei ab 01.10.2020</p>
-        </div>
-
-        <div>
-            <p>published: 25.08.2020, 09:27</p>
-            <h2><a href="">Charlottenburg, Zimmer nur für Student(in)</a></h2>
-            <p>Hallo! Wir sind 4 Studentinen aus FU und zum 15.09.2020 suchen wir eine nette Mitbewohnerin ohne Tierallergien. Du könntest uns erreiechen: 0176 234 56 789 Anna</p>
-        </div>
+{% for anzeige in anzeiges %}
+    <div>
+        <p>published: {{ anzeige.published_date }}</p>
+        <h1><a href="">{{ anzeige.title }}</a></h1>
+        <p>{{ anzeige.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
     </body>
 </html>
