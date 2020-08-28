@@ -6,8 +6,9 @@ from django.utils import timezone
 class Anzeige(models.Model):
     #autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    image = models.ImageField(blank=True, null=True) #height_field = 350 , width_field = 450
     #bezirk = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    zimmergröße = models.IntegerField(default=0)
+    zimmergroesse = models.IntegerField(default=0)
     warmmiete = models.IntegerField(default=0)
     frei_ab = models.DateField(default=timezone.now)
     text = models.TextField()

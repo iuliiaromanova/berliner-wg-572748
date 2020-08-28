@@ -9,9 +9,15 @@
 
 {% for anzeige in anzeiges %}
     <div>
-        <p>published: {{ anzeige.published_date }}</p>
         <h1><a href="">{{ anzeige.title }}</a></h1>
+        {% if anzeige.image %}
+        <img src="{{ anzeige.image.url }}" width="300"/>
+        {% endif %}
+        <p>Zimmergröße: {{ anzeige.zimmergroesse }}qm</p>
+        <p>Warmmiete: {{ anzeige.warmmiete }} € pro Monat</p>
+        <p>Frei ab: {{ anzeige.frei_ab }}</p>
         <p>{{ anzeige.text|linebreaksbr }}</p>
+        <p>published: {{ anzeige.published_date }}</p>
     </div>
 {% endfor %}
     </body>
