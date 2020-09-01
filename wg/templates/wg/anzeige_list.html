@@ -1,24 +1,31 @@
+{% load static %}
 <html>
     <head>
         <title>berliner-wg</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Quando&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/wg.css' %}">
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/">berliner-wg</a></h1>
         </div>
-
-{% for anzeige in anzeiges %}
-    <div>
+<h2>Suchst du ein Zimmer in Berlin? <br/> Dann bist du bei uns richtig </h2>
+        <div class="alle-anzeige">
+        {% for anzeige in anzeiges %}
+    <div class="anzeige">
         <h1><a href="">{{ anzeige.title }}</a></h1>
         {% if anzeige.image %}
-        <img src="{{ anzeige.image.url }}" width="300"/>
+        <img src="{{ anzeige.image.url }}" height="250"/>
         {% endif %}
-        <p>Zimmergröße: {{ anzeige.zimmergroesse }}qm</p>
-        <p>Warmmiete: {{ anzeige.warmmiete }} € pro Monat</p>
-        <p>Frei ab: {{ anzeige.frei_ab }}</p>
-        <p>{{ anzeige.text|linebreaksbr }}</p>
+        <p><strong>Zimmergröße:</strong> {{ anzeige.zimmergroesse }}qm</p>
+        <p><strong>Warmmiete:</strong> {{ anzeige.warmmiete }} € pro Monat</p>
+        <p><strong>Frei ab:</strong> {{ anzeige.frei_ab }}</p>
+        <p style="display: none;">{{ anzeige.text|linebreaksbr }}</p>
         <p>published: {{ anzeige.published_date }}</p>
     </div>
 {% endfor %}
+            </div>
     </body>
 </html>
