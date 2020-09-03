@@ -1,16 +1,15 @@
 {% extends 'wg/base.html' %}
+
 {% block content %}
-        {% for anzeige in anzeiges %}
     <div class="anzeige">
-        <h1><a href="{% url 'anzeige_detail' pk=anzeige.pk %}">{{ anzeige.title }}</a></h1>
+        <h1>{{ anzeige.title }}</h1>
         {% if anzeige.image %}
         <img src="{{ anzeige.image.url }}" height="250"/>
         {% endif %}
         <p><strong>Zimmergröße:</strong> {{ anzeige.zimmergroesse }}qm</p>
         <p><strong>Warmmiete:</strong> {{ anzeige.warmmiete }} € pro Monat</p>
         <p><strong>Frei ab:</strong> {{ anzeige.frei_ab }}</p>
-        <p style="display: none;">{{ anzeige.text|linebreaksbr }}</p>
+        <p>{{ anzeige.text|linebreaksbr }}</p>
         <p>published: {{ anzeige.published_date }}</p>
     </div>
-{% endfor %}
 {% endblock %}
