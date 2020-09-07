@@ -17,7 +17,7 @@ def anzeige_detail(request, pk):
 
 def anzeige_neue(request):
     if request.method == "POST":
-        form = AnzeigeForm(request.POST)
+        form = AnzeigeForm(request.POST, files=request.FILES)
         if form.is_valid():
             anzeige = form.save(commit=False)
             anzeige.author = request.user
