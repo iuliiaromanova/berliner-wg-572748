@@ -1,7 +1,10 @@
 {% extends 'wg/base.html' %}
 
 {% block content %}
-    <div class="anzeige">
+    <div class="anzeige-detail">
+    {% if user.is_authenticated %}
+    <a class="btn btn-default" href="{% url 'anzeige_edit' pk=anzeige.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    {% endif %}
         <h1>{{ anzeige.title }}</h1>
         {% if anzeige.image %}
         <img src="{{ anzeige.image.url }}" height="250"/>

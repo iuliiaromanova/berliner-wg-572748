@@ -1,3 +1,7 @@
+body {
+    font-family: 'Quando';
+}
+
 h1 a {
     color: #59B78A;
     font-family: 'Quando';
@@ -30,11 +34,22 @@ h2 {
     margin: 10px;
     padding: 20px;
 }
+.anzeige-detail {
+    font-family: 'Quando';
+    display: inline-block;
+    width: 500px;
+    text-align: left;
+    margin: 10px;
+    padding: 20px;
+}
 .anzeige h1 a {
     white-space: nowrap;
 }
 .anzeige h1  {
     margin: 10px 0 20px 0;
+}
+.anzeige-detail h1  {
+    color: #CF185C
 }
 
 .alle-anzeige {

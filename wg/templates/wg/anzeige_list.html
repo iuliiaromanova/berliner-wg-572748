@@ -1,5 +1,6 @@
 {% extends 'wg/base.html' %}
 {% block content %}
+    <h2>Suchst du ein Zimmer in Berlin? <br/> Dann bist du bei uns richtig </h2>
         {% for anzeige in anzeiges %}
     <div class="anzeige">
         <h1><a href="{% url 'anzeige_detail' pk=anzeige.pk %}">{{ anzeige.title }}</a></h1>
