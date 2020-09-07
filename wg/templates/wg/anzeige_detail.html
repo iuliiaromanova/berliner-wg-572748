@@ -4,6 +4,7 @@
     <div class="anzeige-detail">
     {% if user.is_authenticated %}
     <a class="btn btn-default" href="{% url 'anzeige_edit' pk=anzeige.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'anzeige_remove' pk=anzeige.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
     {% endif %}
         <h1>{{ anzeige.title }}</h1>
         {% if anzeige.image %}

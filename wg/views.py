@@ -41,3 +41,8 @@ def anzeige_edit(request, pk):
     else:
         form = AnzeigeForm(instance=anzeige)
     return render(request, 'wg/anzeige_edit.html', {'form': form})
+
+def anzeige_remove(request, pk):
+    anzeige = get_object_or_404(Anzeige, pk=pk)
+    anzeige.delete()
+    return redirect('anzeige_list')
