@@ -13,6 +13,7 @@
                 <a href="{% url 'anzeige_neue' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
                 <p class="top-menu">Hallo {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
             {% else %}
+                <a href="{% url 'register' %}"class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
             <h1><a href="/">berliner-wg</a></h1>

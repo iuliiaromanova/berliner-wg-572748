@@ -4,6 +4,11 @@ from .models import Anzeige
 from .forms import AnzeigeForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import TemplateView
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 
 
 # Create your views here.
@@ -50,3 +55,30 @@ def anzeige_remove(request, pk):
     anzeige = get_object_or_404(Anzeige, pk=pk)
     anzeige.delete()
     return redirect('anzeige_list')
+
+class RegisterView(TemplateView):
+    template_name = "registration/register.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            User.objects.create_user(username, password)
+            return redirect(reverse("login"))
+
+        return render(request, self.template_name)
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('anzeige_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
