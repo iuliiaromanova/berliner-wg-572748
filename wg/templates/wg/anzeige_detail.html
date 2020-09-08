@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="anzeige-detail">
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user == anzeige.author %}
     <a class="btn btn-default" href="{% url 'anzeige_edit' pk=anzeige.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
     <a class="btn btn-default" href="{% url 'anzeige_remove' pk=anzeige.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
     {% endif %}

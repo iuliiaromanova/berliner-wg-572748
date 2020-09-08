@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Anzeige(models.Model):
-    #autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=200)
     image = models.ImageField(blank=True, null=True) #height_field = 350 , width_field = 450
     #bezirk = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

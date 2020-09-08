@@ -4,9 +4,6 @@ from .models import Anzeige
 from .forms import AnzeigeForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.views.generic.base import TemplateView
-from django.contrib.auth.models import User
-from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 
@@ -19,7 +16,7 @@ def anzeige_list(request):
 #Anzeige.objects.get(pk=pk)
 def anzeige_detail(request, pk):
     anzeige = get_object_or_404(Anzeige, pk=pk)
-    return render(request, 'wg/anzeige_detail.html', {'anzeige': anzeige})
+    return render(request, 'wg/anzeige_detail.html', {'anzeige': anzeige, 'user': request.user})
 
 @login_required
 def anzeige_neue(request):
@@ -38,6 +35,9 @@ def anzeige_neue(request):
 @login_required
 def anzeige_edit(request, pk):
     anzeige = get_object_or_404(Anzeige, pk=pk)
+    if anzeige.author != request.user:
+        return redirect('anzeige_list')
+
     if request.method == "POST":
         form = AnzeigeForm(request.POST, files=request.FILES, instance=anzeige)
         if form.is_valid():
@@ -53,21 +53,12 @@ def anzeige_edit(request, pk):
 @login_required
 def anzeige_remove(request, pk):
     anzeige = get_object_or_404(Anzeige, pk=pk)
+    if anzeige.author != request.user:
+        return redirect('anzeige_list')
+
     anzeige.delete()
     return redirect('anzeige_list')
 
-class RegisterView(TemplateView):
-    template_name = "registration/register.html"
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-
-            User.objects.create_user(username, password)
-            return redirect(reverse("login"))
-
-        return render(request, self.template_name)
 
 def signup(request):
     if request.method == 'POST':
