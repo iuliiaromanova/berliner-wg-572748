@@ -22,10 +22,14 @@ Das Projekt ist auf dem pythonanywhere-Server deployen http://berlinerwg572748.p
 Zusätzliche Funktionalität
 ==========================
 
+* 4 CRUD Operationen
+* Gäste und registrierte Benutzer haben verschiedene Möglichkeiten
+* Registrierte User kann nur seine Anzeige ändern/löschen
 * Integration von Bildern
 * Login-System mit der Möglichkeit die neuen User hinzufügen
 * Docstrings
 * Google-Map (Dank https://github.com/bashu/django-easy-maps/)
+
 
 
 
