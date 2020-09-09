@@ -14,8 +14,8 @@
                 <p class="top-menu">Hallo {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
                 <a href="{% url 'anzeige_neue' %}" class="top-menu btn-success btn"><span class="glyphicon glyphicon-plus"></span> neue Anzeige hinzufügen</a>
             {% else %}
-                <a href="{% url 'register' %}"class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                <a href="{% url 'register' %}"class="top-menu btn-success btn"><span class="glyphicon glyphicon-user"></span> Neu hier? Registrieren</a>
+                <a href="{% url 'login' %}" class="top-menu btn-success btn"><span class="glyphicon glyphicon-log-in"></span> Melde dich an</a>
             {% endif %}
         </div>
             <h1><a href="/">berliner-wg</a></h1>

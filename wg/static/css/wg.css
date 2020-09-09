@@ -42,10 +42,14 @@ h2 {
 .anzeige-detail {
     font-family: 'Quando';
     display: inline-block;
-    width: 500px;
+    width: 800px;
     text-align: left;
     margin: 10px;
     padding: 20px;
+}
+.anzeige-detail table td {
+    padding: 5px;
+    vertical-align: top;
 }
 .anzeige h1 a {
     white-space: nowrap;
@@ -60,5 +64,6 @@ h2 {
 .alle-anzeige {
     text-align: center;
 }
+
 
 

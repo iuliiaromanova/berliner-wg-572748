@@ -7,6 +7,7 @@
         {% if anzeige.image %}
         <img src="{{ anzeige.image.url }}" height="250"/>
         {% endif %}
+        <p><strong>Adresse:</strong> {{ anzeige.adresse }} </p>
         <p><strong>Zimmergröße:</strong> {{ anzeige.zimmergroesse }}qm</p>
         <p><strong>Warmmiete:</strong> {{ anzeige.warmmiete }} € pro Monat</p>
         <p><strong>Frei ab:</strong> {{ anzeige.frei_ab }}</p>

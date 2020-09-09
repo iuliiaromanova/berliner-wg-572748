@@ -1,4 +1,5 @@
 {% extends 'wg/base.html' %}
+{% load easy_maps_tags %}
 
 {% block content %}
     <div class="anzeige-detail">
@@ -7,13 +8,30 @@
     <a class="btn btn-default" href="{% url 'anzeige_remove' pk=anzeige.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
     {% endif %}
         <h1>{{ anzeige.title }}</h1>
-        {% if anzeige.image %}
-        <img src="{{ anzeige.image.url }}" height="250"/>
-        {% endif %}
-        <p><strong>Zimmergröße:</strong> {{ anzeige.zimmergroesse }}qm</p>
-        <p><strong>Warmmiete:</strong> {{ anzeige.warmmiete }} € pro Monat</p>
-        <p><strong>Frei ab:</strong> {{ anzeige.frei_ab }}</p>
-        <p>{{ anzeige.text|linebreaksbr }}</p>
-        <p>published: {{ anzeige.published_date }}</p>
+    <table>
+        <tr>
+            <td>
+                 {% if anzeige.image %}
+                 <img src="{{ anzeige.image.url }}" height="250"/>
+                {% endif %}
+            </td>
+        <td>
+            <p><strong>Zimmergröße:</strong> <br> {{ anzeige.zimmergroesse }}qm</p>
+            <p><strong>Warmmiete:</strong> <br> {{ anzeige.warmmiete }} € pro Monat</p>
+            <p><strong>Frei ab:</strong> <br> {{ anzeige.frei_ab }}</p>
+            <p><strong>Adresse:</strong> <br> {{ anzeige.adresse }} </p>
+        </td>
+        </tr>
+    </table>
+            <p>{{ anzeige.text|linebreaksbr }}</p>
+             {% if user.is_authenticated %}
+                  <p><strong>Ich bin erreichbar unter:</strong> {{ anzeige.kontakt }} </p>
+             {% else %}
+                 <p>Möchtest du Vermieter kontaktieren? Dann melde dich an!</p>
+            {% endif %}
+            {% if anzeige.adresse %}
+            {% easy_map anzeige.adresse 700 400 14 %}
+            {% endif %}
+            <p>published: {{ anzeige.published_date }}</p>
     </div>
 {% endblock %}

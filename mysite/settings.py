@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wg',
+    'easy_maps',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
 
 LOGIN_REDIRECT_URL = '/'
+
+EASY_MAPS_GOOGLE_KEY = 'AIzaSyAk-ACpJIICqvxAMR2WmwlxQdClqoeVtms'
