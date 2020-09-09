@@ -10,16 +10,19 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 def anzeige_list(request):
+    """Man kann hier alle Anzeigen anschauen"""
     anzeiges = Anzeige.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'wg/anzeige_list.html', {'anzeiges': anzeiges})
 
 #Anzeige.objects.get(pk=pk)
 def anzeige_detail(request, pk):
+    """Man kann genau eine Anzeige anschauen"""
     anzeige = get_object_or_404(Anzeige, pk=pk)
     return render(request, 'wg/anzeige_detail.html', {'anzeige': anzeige, 'user': request.user})
 
 @login_required
 def anzeige_neue(request):
+    """Nur registrierte Benutzer koennen neue Anzeige hinzufuegen"""
     if request.method == "POST":
         form = AnzeigeForm(request.POST, files=request.FILES)
         if form.is_valid():
@@ -34,6 +37,7 @@ def anzeige_neue(request):
 
 @login_required
 def anzeige_edit(request, pk):
+    """Nur registrierte Benutzer koennen seine Anzeige aendern"""
     anzeige = get_object_or_404(Anzeige, pk=pk)
     if anzeige.author != request.user:
         return redirect('anzeige_list')
@@ -52,6 +56,7 @@ def anzeige_edit(request, pk):
 
 @login_required
 def anzeige_remove(request, pk):
+    """Nur registrierte Benutzer koennen seine Anzeige loeschen"""
     anzeige = get_object_or_404(Anzeige, pk=pk)
     if anzeige.author != request.user:
         return redirect('anzeige_list')
@@ -61,6 +66,7 @@ def anzeige_remove(request, pk):
 
 
 def signup(request):
+    """Man kann sich registrieren um Anzeige hinzufuegen/aendern oder loeschen."""
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
